@@ -11,7 +11,7 @@ app.get("/", function(req, res) {
 });
 
 app.post("/", function(req, res) {
-  // var queryCity =  req.body.cityName;
+  var queryCity = req.body.cityName;
   const URL =
     "https://data.police.uk/api/crimes-at-location?date=2021-01&lat=51.1124&lng=-0.4348";
 
@@ -23,11 +23,9 @@ app.post("/", function(req, res) {
         const crimeCat = crimeData[0].category;
         console.log(crimeCat);
 
-        res.send(`<div>
-        <h3>The weather is currently ${weatherDisc}</h3>
-        <h1>The current temperature in ${queryCity} is ${temp} degrees Celcius</h1>
-        <img src = ${imgLink}>
-        `);
+        res.send(
+          `<h1>The main crime category in your area is  ${crimeCat}</h1>`
+        );
       } catch (err) {
         res.send("Try again");
       }
